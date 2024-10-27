@@ -28,8 +28,15 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# install commands for 3rd party packages:
 
+# pip install djangorestframework
+# pip install djangorestframework-authtoken
+# pip install dj-rest-auth
+# pip install django-allauth
+# pip install django-cors-headers
+# pip install pillow
+# pip install requests
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +47,9 @@ INSTALLED_APPS = [
     
     # installed apps
     'accounts',
+    'owners',
+    'tenants',
+    'building',
 
     #3rd party packages
     'rest_framework',
@@ -52,6 +62,8 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+
+# 'allauth.account.middleware.AccountMiddleware',
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -135,9 +147,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# things added after initialization:
 CORS_ORIGIN_ALLOW_ALL = True
 AUTH_USER_MODEL = 'accounts.CustomUser'
-
 MEDIA_URL = '/media/'
 SITE_ID = 1
 REST_FRAMEWORK = {
