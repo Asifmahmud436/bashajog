@@ -8,8 +8,8 @@ RENT_CHOICES = [
 ]
 class Unit(models.Model):
     name = models.CharField(max_length=255)
-    # rent_status = models.CharField(max_length=255,choices=RENT_CHOICES,default=RENT_CHOICES)
-    bedroom = models.IntegerField()
+    room = models.IntegerField()
+    toilet = models.IntegerField()
     window = models.IntegerField()
 
 class Building(models.Model):
