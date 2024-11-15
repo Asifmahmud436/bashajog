@@ -8,7 +8,7 @@ from .serializers import BookingSerializer
 class BookingPagination(PageNumberPagination):
     page_size = 20
     page_size_query_param = 'page_size'
-    max_page_size = 500
+    max_page_size = 100
 class BookingViewSet(ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer

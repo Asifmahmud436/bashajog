@@ -5,6 +5,7 @@ from .models import Booking
 class BookingAdmin(admin.ModelAdmin):
     list_display = ['unit_name','rent','is_booked','tenant_name']
 
+
     def unit_name(self,obj):
         return obj.unit.name
 
