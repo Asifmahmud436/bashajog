@@ -6,7 +6,7 @@ class Owner(models.Model):
     phone_no = models.IntegerField(blank=True,null=True)
     image = models.ImageField(upload_to='owners/images/',blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.user.username

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Tenant
 
-@admin.site.register(Tenant)
+@admin.register(Tenant)
 class CustomTenantAdmin(admin.ModelAdmin):
     list_display = ['id','username','first_name','last_name','user_type']
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Owner
 
-@admin.site.register(Owner)
+@admin.register(Owner)
 class CustomOwnerAdmin(admin.ModelAdmin):
     list_display = ['id','username','first_name','last_name','user_type']
 
