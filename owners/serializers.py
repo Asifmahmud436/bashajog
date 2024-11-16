@@ -8,6 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id','username','first_name','last_name','email','user_type']
+        ref_name = 'OwnerUserSerializer'
 
 class OwnerSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)

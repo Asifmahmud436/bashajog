@@ -8,6 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username','first_name','last_name','email','user_type']
+        ref_name = 'TenantUserSerializer'
 
 class TenantSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)

@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # pip install pillow
 # pip install requests
 # pip install django-environ
+# pip install drf-yasg
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',  # If using social login
     'dj_rest_auth.registration',
     'corsheaders',
+    'drf_yasg',
 ]
 
 
