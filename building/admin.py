@@ -3,7 +3,7 @@ from .models import Unit,Building
 
 @admin.register(Unit)
 class UnitAdmin(admin.ModelAdmin):
-    list_display = ['name','room','building_name']
+    list_display = ['name','room','building_name','is_occupied']
 
     def building_name(self,obj):
         return obj.building.name
@@ -13,5 +13,5 @@ class BuildingAdmin(admin.ModelAdmin):
     list_display = ['name','address','owner_name']
 
     def owner_name(self,obj):
-        return obj.owner.user.username
+        return ', '.join([owner.user.username for owner in obj.owner.all()])
 

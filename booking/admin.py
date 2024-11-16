@@ -10,4 +10,4 @@ class BookingAdmin(admin.ModelAdmin):
         return obj.unit.name
 
     def tenant_name(self,obj):
-        return obj.tenant.user.username
+        return obj.tenant.user.username if obj.tenant else 'To-let'
