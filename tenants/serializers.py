@@ -7,15 +7,18 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username','first_name','last_name','email','user_type','password','confirm_password']
+        fields = ['username','first_name','last_name','email','user_type']
 
 class TenantSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
     class Meta:
         model = Tenant
         fields = '__all__'
 
-class TenantRegistrationSerializer(serializers.Serializer):
+class TenantRegistrationSerializer(serializers.ModelSerializer):
     phone_no = serializers.IntegerField()
+    confirm_password = serializers.CharField(max_length=20,required=True)
+
     class Meta:
         model = User
         fields = ['username','first_name','last_name','email','phone_no','password','confirm_password']

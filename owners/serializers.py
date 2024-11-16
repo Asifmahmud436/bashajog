@@ -10,12 +10,14 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id','username','first_name','last_name','email','user_type']
 
 class OwnerSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
     class Meta:
         model = Owner
         fields = '__all__'
 
 class OwnerRegistrationSerializer(serializers.ModelSerializer):
     phone_no = serializers.IntegerField()
+    confirm_password = serializers.CharField(max_length=50,required=True)
 
     class Meta:
         model = User
