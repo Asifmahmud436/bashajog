@@ -27,6 +27,7 @@ urlpatterns = [
     path('owners/',include('owners.urls')),
     path('tenants/',include('tenants.urls')),
     path('building/',include('building.urls')),
+    path('social-auth/',include('social_django.urls',namespace='social')),
     # path('unit/',include('building.urls')),
     path('booking/',include('booking.urls')),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

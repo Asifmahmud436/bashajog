@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure--a#&d6n0=6j8wl!^r4d)41d$s22yj-ea-7aqr*a4v-xn4%hv8)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # install commands for 3rd party packages:
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     
     # installed apps
     'accounts',
@@ -52,10 +53,12 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',  # If using social login
+    'allauth.socialaccount.providers.google', 
     'dj_rest_auth.registration',
     'corsheaders',
     'drf_yasg',
     'social_django',
+    'django_extensions',
 ]
 
 
@@ -156,6 +159,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        'social_core.backends.google.GoogleOAuth2',
+        # 'allauth.accounts.auth_backends.AuthenticationBackend',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -169,3 +174,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = env("EMAIL")
 EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
 CORS_ALLOW_ALL_ORIGINS = True
+
+# for google auth
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=env('GOOGLE_OAUTH2_KEY') 
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=env('GOOGLE_OAUTH2_SECRET')
