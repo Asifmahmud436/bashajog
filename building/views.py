@@ -3,6 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import PageNumberPagination
 from .serializers import BuildingSerializer,UnitSerializer
 from .models import Building,Unit
+from rest_framework import filters
 
 # building views
 class BuildingPagination(PageNumberPagination):
@@ -14,6 +15,7 @@ class BuildingViewSet(ModelViewSet):
     queryset = Building.objects.all()
     serializer_class = BuildingSerializer
     pagination_class = BuildingPagination
+    search_fields = ['name', 'address', 'owner__user__username']
 
     def get_queryset(self):
         queryset = Building.objects.all()
@@ -33,7 +35,7 @@ class UnitViewSet(ModelViewSet):
     queryset = Unit.objects.all()
     serializer_class = UnitSerializer
     pagination_class = UnitPagination
-
+    
     def get_queryset(self):
         queryset = Unit.objects.all()
         is_occupied = self.request.query_params.get('is_occupied')
