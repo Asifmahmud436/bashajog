@@ -29,8 +29,8 @@ class TenantViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        Tenant_name = self.request.query_params.get('tenant_name')
-        if Tenant_name:
+        tenant_name = self.request.query_params.get('tenant_name')
+        if tenant_name:
             queryset = queryset.filter(user__username__icontains=tenant_name)
         return queryset
 

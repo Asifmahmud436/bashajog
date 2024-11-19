@@ -31,6 +31,11 @@ ALLOWED_HOSTS = ['*']
 # pip install django-environ
 # pip install drf-yasg
 INSTALLED_APPS = [
+    # packages for chat app
+    'daphne',
+    'channels',
+
+    # predefined apps 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,6 +64,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'social_django',
     'django_extensions',
+
+
 ]
 
 
@@ -92,7 +99,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_project.wsgi.application'
+# WSGI_APPLICATION = 'django_project.wsgi.application'
+ASGI_APPLICATION = 'django_project.asgi.application'
 
 
 # Database
