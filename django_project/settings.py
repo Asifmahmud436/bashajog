@@ -188,7 +188,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=env('GOOGLE_OAUTH2_KEY') 
 # SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=env('GOOGLE_OAUTH2_SECRET')
 # Channels configuration
-ASGI_APPLICATION = 'your_project.asgi.application'
+ASGI_APPLICATION = 'django_project.asgi.application'
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',

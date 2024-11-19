@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+
 # for swagger ui
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -27,6 +28,7 @@ urlpatterns = [
     path('owners/',include('owners.urls')),
     path('tenants/',include('tenants.urls')),
     path('building/',include('building.urls')),
+    path('chat/', include('chat.urls')),
     path('social-auth/',include('social_django.urls',namespace='social')),
     # path('unit/',include('building.urls')),
     path('booking/',include('booking.urls')),
