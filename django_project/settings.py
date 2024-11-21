@@ -37,12 +37,12 @@ INSTALLED_APPS = [
 
     # predefined apps 
     'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     
     # installed apps
     'accounts',
@@ -169,7 +169,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'social_core.backends.google.GoogleOAuth2',
-        # 'allauth.accounts.auth_backends.AuthenticationBackend',
+        'allauth.accounts.auth_backends.AuthenticationBackend',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -196,4 +196,21 @@ CHANNEL_LAYERS = {
             "hosts": [('127.0.0.1', 6379)],
         },
     },
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': env('GOOGLE_OAUTH2_CLIENT_ID'),
+            'secret': env('GOOGLE_OAUTH2_SECRET'),
+            'key': env('GOOGLE_OAUTH2_KEY')
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
 }

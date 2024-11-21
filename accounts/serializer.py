@@ -31,3 +31,11 @@ class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['username','first_name','last_name','email','user_type','is_staff']
+
+
+# google auth
+class GoogleAuthSerializer(serializers.Serializer):
+    access_token = serializers.CharField(required=True)
+    user_type = serializers.ChoiceField(choices=[('Owner', 'Owner'), ('Tenant', 'Tenant')])
+    phone_no = serializers.IntegerField(required=False)
+    profession = serializers.CharField(required=False)  # Only for tenants

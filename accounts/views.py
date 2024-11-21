@@ -61,3 +61,58 @@ class LogoutAPIView(APIView):
     def get(self,request):
         logout(request)
         return Response("Logout successful.",status=status.HTTP_200_OK)
+    
+
+# for google auth
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from dj_rest_auth.registration.views import SocialLoginView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import CustomUser
+from owners.models import Owner
+from tenants.models import Tenant
+
+class GoogleLoginView(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+    client_class = OAuth2Client
+    callback_url = "your-callback-url"  # Replace with your frontend callback URL
+    
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        if response.status_code == 200:
+            user = self.user
+            # Check if user_type is provided in request
+            user_type = request.data.get('user_type')
+            
+            if user_type:
+                user.user_type = user_type
+                user.save()
+                
+                # Create corresponding Owner or Tenant profile
+                if user_type == 'Owner':
+                    Owner.objects.get_or_create(
+                        user=user,
+                        defaults={
+                            'phone_no': request.data.get('phone_no')
+                        }
+                    )
+                elif user_type == 'Tenant':
+                    Tenant.objects.get_or_create(
+                        user=user,
+                        defaults={
+                            'phone_no': request.data.get('phone_no'),
+                            'profession': request.data.get('profession', '')
+                        }
+                    )
+                    
+            return Response({
+                'token': response.data.get('token'),
+                'user': {
+                    'id': user.id,
+                    'email': user.email,
+                    'username': user.username,
+                    'user_type': user.user_type
+                }
+            })
+        return response
